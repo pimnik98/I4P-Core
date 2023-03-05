@@ -123,7 +123,6 @@ switch($isp->func){
 		$form->mode = "table";
 		$form->addArray($form->root->metadata,$isp->getMetaData());
 		$ex = explode("::",$p["elid"],2);
-		$isp->logs->WriteLog(1,json_encode([$ex,count($ex)]));
 		if (count($ex)!=2) $isp->err->InternalError("Не правильно переданы аргументы.");
 		$file = "/usr/local/ispmgr/etc/isp4private/".$ex[0].".ini";
 		if (!is_file($file)) $isp->err->InternalError("Не удалось найти файл конфигурации плагина.");
