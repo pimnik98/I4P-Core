@@ -34,8 +34,8 @@ I4P-Core это мини-фре́ймворк, на стадиях АЛЬФА-Т
 ## Я хочу помочь проекту
 Если вы желаете, помочь с переводом, то милости просим.
 Локализация содержиться в двух файлах:
-- Для панели управления: /etc/ispmgr_mod_i4p_core.xml
-- Для самого плагина: /etc/isp4private/i4p_core.xml
+- Для панели управления: [etc/ispmgr_mod_i4p_core.xml](https://github.com/pimnik98/I4P-Core/blob/main/etc/ispmgr_mod_i4p_core.xml)
+- Для самого плагина: [etc/isp4private/i4p_core.xml](https://github.com/pimnik98/I4P-Core/blob/main/etc/isp4private/i4p_core.ini)
 
 Еще вы можете просто поддержать проект, поставив звезду нам в репозиторий.
 Подписывайтесь на уведомления от репозитория, тогда вы сможете наблюдать за измениями в самом репозитории ISP4Private
@@ -79,8 +79,8 @@ This plugin includes:
 ## I want to help the project
 If you wish to help with the translation, then you are welcome.
 Localization is contained in two files:
-- For the control panel: /etc/ispmgr_mod_i4p_core.xml
-- For the plugin itself: /etc/isp4private/i4p_core.xml
+- For the control panel: [etc/ispmgr_mod_i4p_core.xml](https://github.com/pimnik98/I4P-Core/blob/main/etc/ispmgr_mod_i4p_core.xml)
+- For the plugin itself: [etc/isp4private/i4p_core.xml](https://github.com/pimnik98/I4P-Core/blob/main/etc/isp4private/i4p_core.ini)
 
 You can also just support the project by putting a star in our repository.
 Subscribe to notifications from the repository, then you will be able to observe changes in the ISP4Private repository itself
