@@ -1,0 +1,22 @@
+<mgrdata>
+	<plugin name="i4p_ace" version="1.0.0">
+		<descr lang="en">ISP4Private - Modification Control Center
+Plugin page: http://isp4private.ru/plugins/core/</descr>
+		<descr lang="ru">ISP4Private - Центр управления модификациями
+Страница плагина: http://isp4private.ru/plugins/core/</descr>
+		<description lang="en">ISP4Private - Modification Control Center
+Plugin page: http://isp4private.ru/plugins/core/</description>
+		<description lang="ru">ISP4Private - Центр управления модификациями</description>
+		<author name="ISP4Private.Ru" contacts="isp4private@gmail.com">ISP4Private.Ru
+Страница плагина: http://isp4private.ru/plugins/core/</author>
+		<contact>isp4private@gmail.com</contact>
+		<url>http://isp4private.ru/download/plugins/i4p_core.tar.gz</url>
+		<manager>ispmgr</manager>
+		<lang>php</lang>
+		<require>dom</require>
+		<site>http://isp4private.ru/plugins/core/</site>
+		<name lang="en">ISP4Private - Modification Control Center</name>
+		<name lang="ru">ISP4Private - Центр управления модификациями</name>
+		<version>1.0.0</version>
+	</plugin>
+</mgrdata>
