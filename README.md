@@ -31,6 +31,9 @@ I4P-Core это мини-фре́ймворк, на стадиях АЛЬФА-Т
 > http://isp4private.ru/download/plugins/plugins.xml
 4. Потом выберите и обновите источник
 
+## Где я могу посмотреть список текущих аддонов?
+- [ADDONS.md](https://github.com/pimnik98/I4P-Core/blob/main/ADDONS.md)
+
 ## Я хочу помочь проекту
 Если вы желаете, помочь с переводом, то милости просим.
 Локализация содержиться в двух файлах:
@@ -75,6 +78,9 @@ This plugin includes:
 3. Add this source
 > http://isp4private.ru/download/plugins/plugins.xml
 4. Select and update source
+
+## Where can I see a list of current addons?
+- [ADDONS.md](https://github.com/pimnik98/I4P-Core/blob/main/ADDONS.md)
 
 ## I want to help the project
 If you wish to help with the translation, then you are welcome.
