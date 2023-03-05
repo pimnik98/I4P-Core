@@ -24,6 +24,13 @@ I4P-Core это мини-фре́ймворк, на стадиях АЛЬФА-Т
 - Продукт 4-го поколения ISPManager (Учтите, что софт платный)
 - Установлен на сервере PHP 5.3+
 
+## Как подключиться к репозиторию I4P?
+1. Авторизуйтесь администратором
+2. Перейдите `Настройки сервера > Плагины > Источники`
+3. Добавьте этот источник
+> http://isp4private.ru/download/plugins/plugins.xml
+4. Потом выберите и обновите источник
+
 ## Я хочу помочь проекту
 Если вы желаете, помочь с переводом, то милости просим.
 Локализация содержиться в двух файлах:
@@ -60,6 +67,14 @@ This plugin includes:
 ## What are the server requirements?
 - Product of the 4th generation ISPmanager (Note that the software is paid)
 - Installed on the PHP 5 server.3+
+
+
+## How to connect to the repository?
+1. Log in as an administrator
+2. Go to `Server Settings > Plugins > Sources`
+3. Add this source
+> http://isp4private.ru/download/plugins/plugins.xml
+4. Select and update source
 
 ## I want to help the project
 If you wish to help with the translation, then you are welcome.
