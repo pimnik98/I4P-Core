@@ -66,7 +66,7 @@ This plugin includes:
 
 ## What are the server requirements?
 - Product of the 4th generation ISPmanager (Note that the software is paid)
-- Installed on the PHP 5 server.3+
+- Installed on the PHP 5.3+
 
 
 ## How to connect to the repository?
