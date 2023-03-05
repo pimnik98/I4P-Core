@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mgrdata>
+    <plugin name="i4p_ace" version="1.0.0">
+		<descr lang="en">ISP4Private - Modification Control Center
+Plugin page: http://isp4private.ru/plugins/ace/</descr>
+		<descr lang="ru">ISP4Private - Центр управления модификациями
+Страница плагина: http://isp4private.ru/plugins/ace/</descr>
+		<description lang="en">ISP4Private - Modification Control Center
+Plugin page: http://isp4private.ru/plugins/ace/</description>
+		<description lang="ru">ISP4Private - Центр управления модификациями</description>
+		<author name="ISP4Private.Ru" contacts="isp4private@gmail.com">ISP4Private.Ru
+Страница плагина: http://isp4private.ru/plugins/ace/</author>
+		<contact>isp4private@gmail.com</contact>
+		<url>http://isp4private.ru/plugins/ace/i4p_core.tar.gz</url>
+		<manager>ispmgr</manager>
+		<lang>php</lang>
+		<require>dom</require>
+		<site>http://isp4private.ru/plugins/core/</site>
+		<name lang="en">ISP4Private - Modification Control Center</name>
+		<name lang="ru">ISP4Private - Центр управления модификациями</name>
+		<version>1.0.0</version>
+	</plugin>
+	<handler name="isp4private.php" type="xml" minlevel="7">
+		<func>i4p.core.list</func>
+		<func>i4p.core.test</func>
+		<func>i4p.core.ispmgr</func>
+		<func>i4p.plugins.config</func>
+		<func>i4p.plugins.config.open</func>
+		<func>i4p.plugins.config.edit</func>
+	</handler>
+	<mainmenu level="7">
+		<node name="ISP4Private">
+			<node name="i4p.core.list" noapi="yes"/>
+		</node>
+	</mainmenu>
+	<metadata name="i4p.core.list" type="list" key="id" selficon="integration">
+      <toolbar>
+        <toolbtn func="i4p.plugins.install" type="list"  img="t-new" name="install"/>
+        <toolbtn func="i4p.plugins.config" type="editlist" img="t-edit" name="config" default="yes"/>
+		<toolbtn func="i4p.plugins.test" type="edit" img="t-delete" name="test"/>
+        <toolbtn func="i4p.plugins.update" type="edit" img="t-delete" name="update"/>
+        <toolsep/>
+		<toolbtn func="i4p.core.ispmgr" type="new" img="t-getdinfo" name="ispmgr"/>
+		<toolbtn func="i4p.core.test" type="new" img="t-sysstat" name="mgrtest"/>
+		<toolsep/>
+      </toolbar>
+      <coldata>
+        <col sort="alpha" if="myhide" sorted="yes" name="id" type="data"/>
+		<col sort="alpha" name="plugin" type="data"/>
+		<col sort="digit" name="version" type="data"/>
+		<col name="status" sort="prop">
+			<prop name="v" onimg="p-on" defimg="p-off" stat="yes"/>
+			<prop name="configs" onimg="p-lt2" stat="yes"/>
+			<prop name="updateready" onimg="p-pr3" stat="yes"/>
+	  	</col> 
+      </coldata>
+    </metadata>
+    <metadata name="i4p.plugins.config" type="list" key="id" selficon="integration">
+      <toolbar>
+        <toolbtn func="i4p.core.list" type="list"  img="t-back" name="back"/>
+        <toolbtn func="i4p.plugins.config.open" type="editlist"  img="t-edit" name="open"  default="yes"/>
+      </toolbar>
+      <coldata>
+        <col sort="alpha" if="myhide" sorted="yes" name="id" type="data"/>
+		<col sort="alpha" name="cat" type="data" width="10%"/>
+		<col sort="alpha" name="msg" type="data"/>
+		<col sort="digit" name="count" type="data" width="5%"/>
+      </coldata>
+    </metadata>
+    <metadata name="i4p.plugins.config.open" type="list" key="id" selficon="integration">
+      <toolbar>
+        <toolbtn func="i4p.core.list" type="list"  img="t-back" name="back"/>
+        <toolbtn func="i4p.plugins.config.new" type="new"  img="t-new" name="new"/>
+        <toolbtn func="i4p.plugins.config.edit" type="edit"  img="t-edit" name="edit"  default="yes"/>
+        <toolbtn func="i4p.plugins.config.delete" type="edit"  img="t-edit" name="delete"/>
+      </toolbar>
+      <coldata>
+        <col sort="alpha" if="myhide" sorted="yes" name="id" type="data"/>
+		<col sort="alpha" name="key" type="data" width="10%"/>
+		<col sort="digit" name="desc" type="data"/>
+		<col sort="digit" name="value" type="data" width="5%"/>
+      </coldata>
+    </metadata>
+    <metadata name="i4p.plugins.config.edit" type="form" >
+        <form>
+            <field name="key">
+				<input type="text" name="key" empty="no"/>
+			</field>
+            <field name="value">
+				<input type="text" name="value" empty="no"/>
+			</field>
+        </form>
+    </metadata>
+    
+    <metadata name="i4p.core.ispmgr" type="form">
+        <form>
+            <field name="op1">
+                <input type="checkbox" name="cache"/>
+                <desc name="cache"></desc>
+            </field>
+            <field name="op2">
+                <input type="checkbox" name="logs"/>
+                <desc name="logs"></desc>
+            </field>
+        </form>
+    </metadata>
+	<metadata name="i4p.core.test" type="form" nocancel="yes" helpurl="https://isp4private.ru/">
+      <form>
+        <field name="version">
+          <input type="text" name="version" readonly="yes"/>
+        </field>
+		<field name="login">
+          <input type="text" name="login" readonly="yes"/>
+        </field>
+		<field name="authid">
+          <input type="text" name="authid" readonly="yes"/>
+        </field>
+		<field name="licid">
+          <input type="text" name="licid" readonly="yes"/>
+        </field>
+		<field name="mgr_panel">
+          <input type="text" name="mgr_panel" readonly="yes"/>
+        </field>
+		<field name="mgr_version">
+          <input type="text" name="mgr_version" readonly="yes"/>
+        </field>
+		<field name="distribution">
+          <input type="text" name="distribution" readonly="yes"/>
+        </field>
+		<field name="osname">
+          <input type="text" name="osname" readonly="yes"/>
+        </field>
+		<field name="recordlimit">
+          <input type="text" name="recordlimit" readonly="yes"/>
+        </field>
+		<field name="access">
+          <input type="text" name="access" readonly="yes"/>
+        </field>
+		<field name="lang">
+          <input type="text" name="lang" readonly="yes"/>
+        </field>
+		<field name="server_name">
+          <input type="text" name="server_name" readonly="yes"/>
+        </field>
+		<field name="port">
+          <input type="text" name="port" readonly="yes"/>
+        </field>
+		<field name="author">
+          <input type="text" name="author" readonly="yes"/>
+        </field>
+		<field name="help">
+          <input type="text" name="help" readonly="yes"/>
+        </field>
+      </form>
+    </metadata>
+	<lang name="en">
+		<messages name="desktop">
+			<msg name="menu_ISP4Private">ISP4Private</msg>
+			<msg name="menu_i4p.core.list">Addon Manager</msg>
+		</messages>
+		<messages name="i4p.core.list">
+			<msg name="title">Addon Manager</msg>
+			<msg name="t">Category</msg>
+			<msg name="id">ID</msg>
+			<msg name="plugin">Plugin name</msg>
+			<msg name="version">Version</msg>
+			<msg name="status">Status</msg>
+			<msg name="short_install">Install</msg>
+			<msg name="hint_install">Install new extensions from the repository</msg>
+			<msg name="short_config">Configuration</msg>
+			<msg name="hint_config">Configure the plugin operation</msg>
+			<msg name="short_test">Testing</msg>
+			<msg name="hint_test">Test this plugin</msg>
+			<msg name="short_update">Refresh</msg>
+			<msg name="hint_update">Update this plugin</msg>
+			<msg name="short_mgrtest">Testing</msg>
+			<msg name="hint_mgrtest">Run the library environment testing</msg>
+			<msg name="short_ispmgr">ISPMGR</msg>
+			<msg name="hint_ispmgr">Reboot, clear panel cache</msg>
+		</messages>
+		<messages name="i4p.core.test">
+			<msg name="title">Testing</msg>
+			<msg name="version">Library version</msg>
+			<msg name="login">Login</msg>
+			<msg name="authid">Sessions ID</msg>
+			<msg name="licid">License ID</msg>
+			<msg name="mgr_panel">Control Panel</msg>
+			<msg name="mgr_version">Panel version</msg>
+			<msg name="distribution">Distribution</msg>
+			<msg name="osname">OSName</msg>
+			<msg name="recordlimit">Record Limit</msg>
+			<msg name="access">Access level</msg>
+			<msg name="lang">User's language</msg>
+			<msg name="server_name">Server Name (url)</msg>
+			<msg name="port">Server Port</msg>
+			<msg name="author">Author</msg>
+			<msg name="help">URL-Help</msg>
+		</messages>
+		<messages name="i4p.core.ispmgr">
+		    <msg name="title">Rebooting the Control Panel</msg>
+		    <msg name="cache">Clear cache panels</msg>
+		    <msg name="logs">Delete all log files</msg>
+		</messages>
+		<messages name="i4p.plugins.config">
+		    <msg name="title">Plugin configuration</msg>
+		    <msg name="cat">Category</msg>
+		    <msg name="msg">Information</msg>
+		    <msg name="count">Number of parameters</msg>
+			<msg name="short_open">Open</msg>
+			<msg name="hint_open">Open category</msg>
+			<msg name="short_back">Back</msg>
+			<msg name="hint_back">Come back</msg>
+		</messages>
+		<messages name="i4p.plugins.config.open">
+		    <msg name="title">Plugin configuration</msg>
+		    <msg name="key">Key</msg>
+		    <msg name="value">Value</msg>
+		    <msg name="desc">Description</msg>
+			<msg name="short_new">Create</msg>
+			<msg name="hint_new">Create new given parameter</msg>
+			<msg name="short_edit">Edit</msg>
+			<msg name="hint_edit">Edit this setting</msg>
+			<msg name="short_delete">Delete</msg>
+			<msg name="hint_delete">Delete this option</msg>
+		</messages>
+		<messages name="i4p.plugins.config.edit">
+			<msg name="title">Editing a parameter</msg>
+			<msg name="key">Key</msg>
+			<msg name="value">Value</msg>
+		</messages>
+	</lang>
+	<lang name="ru">
+		<messages name="desktop">
+			<msg name="menu_ISP4Private">ISP4Private</msg>
+			<msg name="menu_i4p.core.list">Менеджер аддонов</msg>
+		</messages>
+		<messages name="i4p.core.list">
+			<msg name="title">Менеджер аддонов</msg>
+			<msg name="t">Категории</msg>
+			<msg name="id">ID</msg>
+			<msg name="plugin">Название плагина</msg>
+			<msg name="version">Версия</msg>
+			<msg name="status">Статус</msg>
+			<msg name="short_install">Установить</msg>
+			<msg name="hint_install">Установить новые дополнения из репозитория</msg>
+			<msg name="short_config">Конфигурация</msg>
+			<msg name="hint_config">Настроить работу плагина</msg>
+			<msg name="short_test">Тестирование</msg>
+			<msg name="hint_test">Протестировать данный плагин</msg>
+			<msg name="short_update">Обновить</msg>
+			<msg name="hint_update">Обновить данный плагин</msg>
+			<msg name="short_mgrtest">Тестирование</msg>
+			<msg name="hint_mgrtest">Запустить тестирование окружения библиотеки</msg>
+			<msg name="short_ispmgr">ISPMGR</msg>
+			<msg name="hint_ispmgr">Перезагрузка, отчистка кеша панели</msg>
+		</messages>
+		<messages name="i4p.core.test">
+			<msg name="title">Тестирование окружения</msg>
+			<msg name="version">Версия библиотеки</msg>
+			<msg name="login">Логин</msg>
+			<msg name="authid">ID Сессии</msg>
+			<msg name="licid">ID Лицензии</msg>
+			<msg name="mgr_panel">Панель управления</msg>
+			<msg name="mgr_version">Версия панели управления</msg>
+			<msg name="distribution">Дистрибутив</msg>
+			<msg name="osname">OSName</msg>
+			<msg name="recordlimit">Лимит записей</msg>
+			<msg name="access">Уровень доступа</msg>
+			<msg name="lang">Язык пользователя</msg>
+			<msg name="server_name">Название сервера (url)</msg>
+			<msg name="port">Порт сервера</msg>
+			<msg name="author">Автор</msg>
+			<msg name="help">URL-помощи</msg>
+		</messages>
+		<messages name="i4p.core.ispmgr">
+		    <msg name="title">Перезагрузка панели управления</msg>
+		    <msg name="cache">Очистить кеш панели</msg>
+		    <msg name="logs">Удалить все файлы журналов</msg>
+		</messages>
+		<messages name="i4p.plugins.config">
+		    <msg name="title">Конфигурация плагина</msg>
+		    <msg name="cat">Категория</msg>
+		    <msg name="msg">Информация</msg>
+		    <msg name="count">Кол-во параметров</msg>
+			<msg name="short_open">Открыть</msg>
+			<msg name="hint_open">Открыть категорию</msg>
+			<msg name="short_back">Назад</msg>
+			<msg name="hint_back">Вернуться назад</msg>
+		</messages><messages name="i4p.plugins.config">
+		    <msg name="title">Конфигурация плагина</msg>
+		    <msg name="cat">Категория</msg>
+		    <msg name="msg">Информация</msg>
+		    <msg name="count">Кол-во параметров</msg>
+			<msg name="short_open">Открыть</msg>
+			<msg name="hint_open">Открыть категорию</msg>
+			<msg name="short_back">Назад</msg>
+			<msg name="hint_back">Вернуться назад</msg>
+		</messages>
+		<messages name="i4p.plugins.config.open">
+		    <msg name="title">Конфигурация плагина</msg>
+		    <msg name="key">Параметр</msg>
+		    <msg name="value">Значение</msg>
+		    <msg name="desc">Описание</msg>
+			<msg name="short_new">Создать</msg>
+			<msg name="hint_new">Создать новый данный параметр</msg>
+			<msg name="short_edit">Редактировать</msg>
+			<msg name="hint_edit">Отредактировать данный параметр</msg>
+			<msg name="short_delete">Удалить</msg>
+			<msg name="hint_delete">Удалить данный параметр</msg>
+		</messages>
+		<messages name="i4p.plugins.config.edit">
+			<msg name="title">Редактирование параметра</msg>
+			<msg name="key">Ключ</msg>
+			<msg name="value">Значение</msg>
+		</messages>
+	</lang>
+</mgrdata>
