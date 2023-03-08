@@ -466,9 +466,14 @@ class I4PFunc{
 	public function __construct($isp){
 		$this->isp = $isp;
 	}
-
+	# Тестовая функция
 	public function test(){
 		$this->isp->logs->WriteLog(1,"I4PFunc Hello");
+	}
+
+	# Фильтруем строку
+	public function filterStr($str){
+		return trim(htmlspecialchars($str));
 	}
 }
 
