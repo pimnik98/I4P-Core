@@ -481,6 +481,23 @@ class I4PFunc{
 		}
 		return $pass;
 	}
+
+	# Получение пути пользователя
+	public function getUserPath(){
+		$userdir = '';
+		if ($level < 7){
+		$passwd = explode("\n", @file_get_contents('/etc/passwd'));
+		foreach($passwd as $pass){
+				if (strpos($pass, $user . ':') === 0){
+					$user_info = explode(':', $pass);
+					$userdir = $user_info[5];
+					break;
+				}
+			}
+		}
+		return $userdir."/";
+	}
+
 }
 
 ?>
