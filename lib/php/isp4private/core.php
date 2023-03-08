@@ -498,6 +498,17 @@ class I4PFunc{
 		return $userdir."/";
 	}
 
+
+	# Отфильтрует ваш путь
+	public function getPath($path){
+		$path = str_replace('\\',"",$path);
+		$path = str_replace('//',"/",$path);
+		$path = str_replace('../',"",$path);
+		$path = str_replace('./',"",$path);
+		$path = str_replace('\..\\',"",$path);
+		$path = str_replace('\.\\',"",$path);
+		return $this->filterStr($path);
+	}
 }
 
 ?>
