@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mgrdata>
-    <plugin name="i4p_ace" version="1.1.0">
+    <plugin name="i4p_core" version="1.1.0">
 		<descr lang="en">ISP4Private - Modification Control Center
 Plugin page: http://isp4private.ru/plugins/core/</descr>
 		<descr lang="ru">ISP4Private - Центр управления модификациями
