@@ -103,14 +103,11 @@ class PiminoffISP{
 	         $this->err->InternalError("The \"".$name."\" library is not available. You may need to install it, if you have problems, contact the library developer.");
 	         return false;
 	    } 
-	    $conf = new INIStorage("/usr/local/ispmgr/etc/isp4private/lib_".$name.".ini",true);
+	    $conf = new INIStorage("/usr/local/ispmgr/etc/isp4private/".$name.".ini",true);
 	    $conf->def("Name",$name,"Library");                         // Название плагина
 	    $conf->def("Version","1.0","Library");                      // Версия плагина
 	    $conf->def("Author","ISP4Private.Ru","Library");            // Автор плагина
 	    $conf->def("Dependencies","","Library");                    // Через запятую, необходимые библиотеки
-	    $conf->def("Settings",$name.".config","Utilities");         // [Для фнк настройки библиотеки] Установите пустое поле, чтобы игнорировать значение
-	    $conf->def("Test",$name.".test","Utilities");               // [Для фнк тестирования библиотеки] Установите пустое поле, чтобы игнорировать значение
-	    $conf->def("Update",$name.".update","Utilities");           // [Для фнк обновления библиотеки] Установите пустое поле, чтобы игнорировать значение
 	    $conf->save(1);
 	    
 	    foreach(explode(",",$conf->get("Dependencies","Plugin")) as $dep){
