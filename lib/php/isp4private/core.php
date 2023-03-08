@@ -9,6 +9,7 @@ class PiminoffISP{
 	public $err;
 	public $logs;
 	public $config;
+	public $tools;
 	protected $params = array();
 	protected $metadata = array();
 	public $elid = false;
@@ -20,6 +21,7 @@ class PiminoffISP{
 		$this->logs = new LogsISP($module,$logs,$lvllog);
 		$this->env = new EnvironmentISP($module);
 		$this->err = new ErrorISP($module);
+		$this->tools = new I4PFunc($this);
 		if (!is_dir("/usr/local/ispmgr/etc/isp4private/logs/")){
 	        if(!mkdir("/usr/local/ispmgr/etc/isp4private/logs/", 0700,true)){
 	            $this->err->InternalError("Failed to create a technical folder to work with plugins.");
@@ -51,7 +53,7 @@ class PiminoffISP{
 		} elseif ($this->env->mgr_panel == "" || $this->env->osname == ""){
 			$this->logs->WriteLog(3,'The control panel and operating system are not defined. Sorry, the app will be closed.');
 			$this->err->InternalError("The control panel and operating system are not defined. Sorry, the app will be closed.");
-		}	
+		}
 		$this->logs->WriteLog(1,'Module: '.$module);
 		$this->logs->WriteLog(1,'Panel: ['.$this->env->mgr_panel.'] '.$this->env->distribution.' '.$this->env->mgr_version);
 		$this->logs->WriteLog(1,'OS: '.$this->env->osname);
@@ -85,7 +87,7 @@ class PiminoffISP{
 				$this->err->InternalError("Error reading data. Sorry, the app will be closed.");
 			}
 		}
-				
+
 	}
 	# Позволяет проверить есть ли, библиотека или нет.
 	# Учтите, что на валидность библиотеки нет проверки.
@@ -102,14 +104,14 @@ class PiminoffISP{
 	         $this->logs->WriteLog(3,'[checkLib] Plugin "'.$name.'" is not available.');
 	         $this->err->InternalError("The \"".$name."\" library is not available. You may need to install it, if you have problems, contact the library developer.");
 	         return false;
-	    } 
+	    }
 	    $conf = new INIStorage("/usr/local/ispmgr/etc/isp4private/".$name.".ini",true);
 	    $conf->def("Name",$name,"Library");                         // Название плагина
 	    $conf->def("Version","1.0","Library");                      // Версия плагина
 	    $conf->def("Author","ISP4Private.Ru","Library");            // Автор плагина
 	    $conf->def("Dependencies","","Library");                    // Через запятую, необходимые библиотеки
 	    $conf->save(1);
-	    
+
 	    foreach(explode(",",$conf->get("Dependencies","Plugin")) as $dep){
 	        if (!$this->checkLib($dep)){
 	            $this->err->InternalError("The \"".$dep."\" library is not available. You may need to install it, if you have problems, contact the library developer.");
@@ -118,7 +120,7 @@ class PiminoffISP{
 	    $this->logs->WriteLog(3,'[checkLib] The "'.$name.'" plugin is available for connection.');
 	    return true;
 	}
-	
+
 	function ArrayFormat($ar) {
 		$result = array();
 		foreach($ar as $k => $v) {
@@ -130,12 +132,12 @@ class PiminoffISP{
 		}
 		return $result;
 	}
-	
+
 	function getMetaData(){
 		$js = json_decode(json_encode($this->metadata),true);
 		return (isset($js["metadata"])?$js["metadata"]:array());
 	}
-	
+
 	public final function getParams(){
 		$js = json_decode(json_encode($this->params),true);
 		$this->elid = (isset($js["params"]["elid"])?$js["params"]["elid"]:false);
@@ -143,12 +145,12 @@ class PiminoffISP{
 		$this->func = (isset($js["params"]["func"])?$js["params"]["func"]:false);
 		return (isset($js["params"])?$js["params"]:array());
 	}
-	
+
 	protected final function checkDebug($input){
 		global $argc, $argv;
 		return $argc > 1 && $argv[1] != 'before' && $argv[1] != 'after' && $argv[1] != 'final' ? array("cli",$argv[1]) : array("xml",$input);
 	}
-	
+
 	public final function checkAccess($access){
 		if ($this->env->access < $access){
 			$this->err->AccessDenied();
@@ -156,11 +158,13 @@ class PiminoffISP{
 	}
 }
 
+
+
 class LogsISP {
 	private $logs = false;
 	private $levellog = 1;
 	private $handle_log;
-	
+
 	public function __construct($module,$logs=false,$lvllog=1){
 		$this->logs = $logs;
 		if ($this->logs){
@@ -170,13 +174,13 @@ class LogsISP {
 			}
 		}
 	}
-	
+
 	public function WriteLog($lvl=1,$text){
 		if ($this->handle_log && $this->levellog >= $lvl){
 			fwrite($this->handle_log, "[".date("Y-m-d H:i:s") . "]\t" . $text . "\n");
 		}
 	}
-	
+
 	function __destruct() {
 		if ($this->logs && $this->handle_log)
 		{
@@ -230,7 +234,7 @@ class XMLData {
 	public function getXML(){
 		return $this->xml;
 	}
-	
+
 	public function addNode($parent,$name,$value=null){
 		if ($value==null){
 			return $parent->addChild($name);
@@ -238,20 +242,20 @@ class XMLData {
 			return $parent->addChild($name,$value);
 		}
 	}
-	
+
 	public function addAttribute($parent,$name,$value){
 		$parent->addAttribute($name,$value);
 	}
-	
+
 	public function PrintXML(){
 		print($this->xml->asXML());
         exit();
 	}
-	
+
 	public function PXML(){
 		return $this->xml->asXML();
 	}
-	
+
 	public function addArray($parent,$array){
 		foreach ($array as $k => $v){
 			switch ($k){
@@ -322,7 +326,7 @@ class XMLData {
     				                $vb = $this->addNode($back,key($v));
     				                foreach ($sv["@attributes"] as $akk => $avv){
                 						$this->addAttribute($vb,$akk,$avv);
-                						
+
                 					}
                 					unset($sv["@attributes"]);
                 					foreach($sv as $akk => $avv){
@@ -349,11 +353,11 @@ class ErrorISP{
 		$this->xml = new SimpleXMLElement('<doc></doc>');
 		$this->logs = new LogsISP($module,true,3);
 	}
-	
+
 	protected function getXML(){
 		return $this->xml;
 	}
-	
+
 	public function AccessDenied($obj){
 		$this->logs->WriteLog(1,"[ERROR:6] AccessDenied: ".$obj);
 		$xml = $this->getXML();
@@ -363,7 +367,7 @@ class ErrorISP{
 		print($xml->asXML());
         exit();
 	}
-	
+
 	public function AlreadyExists($obj){
 		$this->logs->WriteLog(1,"[ERROR:2] AlreadyExists: ".$obj);
 		$xml = $this->getXML();
@@ -373,7 +377,7 @@ class ErrorISP{
 		print($xml->asXML());
         exit();
 	}
-	
+
 	public function DirectError($text){
 		$this->logs->WriteLog(1,"[ERROR:9] DirectError: ".$text);
 		$xml = $this->getXML();
@@ -382,7 +386,7 @@ class ErrorISP{
 		print($xml->asXML());
         exit();
 	}
-	
+
 	public function InternalError($text){
 		$this->logs->WriteLog(1,"[ERROR:1] InternalError: ".$text);
 		$xml = $this->getXML();
@@ -391,18 +395,18 @@ class ErrorISP{
 		print($xml->asXML());
         exit();
 	}
-	
+
 	public function InvalidValue($val){
 		$this->logs->WriteLog(1,"[ERROR:4] InvalidValue: ".$val);
 		$xml = $this->getXML();
 		$err = $xml->addChild('error');
 		$err->addAttribute("val",$val);
 		$err->addAttribute("code",4);
-		
+
 		print($xml->asXML());
         exit();
 	}
-	
+
 	public function LimitExceed($val){
 		$this->logs->WriteLog(1,"[ERROR:5] LimitExceed: ".$val);
 		$xml = $this->getXML();
@@ -420,7 +424,7 @@ class ErrorISP{
 		print($xml->asXML());
         exit();
 	}
-	
+
 	public function NotEnoughtMoney(){
 		$this->logs->WriteLog(1,"[ERROR:11] NotEnoughtMoney");
 		$xml = $this->getXML();
@@ -429,7 +433,7 @@ class ErrorISP{
 		print($xml->asXML());
         exit();
 	}
-	
+
 	public function NotExists($obj){
 		$this->logs->WriteLog(1,"[ERROR:3] NotExists: ".$obj);
 		$xml = $this->getXML();
@@ -439,7 +443,7 @@ class ErrorISP{
 		print($xml->asXML());
         exit();
 	}
-	
+
 	public function MessageError($obj,$text="?"){
 		$this->logs->WriteLog(1,"[ERROR:8] MessageError: ".$obj." ".$text);
 		$xml = $this->getXML();
@@ -454,6 +458,17 @@ class ErrorISP{
 	    $this->logs->WriteLog(1,"[ERROR:FE] [".$func."] ".($elid?'['.$elid.']':null)." Form Error: ".$text);
 	    echo '<?xml version="1.0" encoding="UTF-8"?><doc user="root" level="7"><metadata name="'.$func.'" type="form"><form nosubmit="yes"><field name="cr_err"><textdata type="data" name="msg"/></field></form></metadata>'.($elid?'<elid>'.$elid.'</elid>':null).'<msg>'.$text.'</msg></doc>';
 	    die();
+	}
+}
+
+class I4PFunc{
+	private $isp = false;
+	public function __construct($isp){
+		$this->isp = $isp;
+	}
+
+	public function test(){
+		$this->isp->logs->WriteLog(1,"I4PFunc Hello");
 	}
 }
 
