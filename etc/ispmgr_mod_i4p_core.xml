@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mgrdata>
-    <plugin name="i4p_ace" version="1.0.0">
+    <plugin name="i4p_ace" version="1.1.0">
 		<descr lang="en">ISP4Private - Modification Control Center
 Plugin page: http://isp4private.ru/plugins/core/</descr>
 		<descr lang="ru">ISP4Private - Центр управления модификациями
@@ -18,7 +18,7 @@ Plugin page: http://isp4private.ru/plugins/core/</description>
 		<site>http://isp4private.ru/plugins/core/</site>
 		<name lang="en">ISP4Private - Modification Control Center</name>
 		<name lang="ru">ISP4Private - Центр управления модификациями</name>
-		<version>1.0.0</version>
+		<version>1.1.0</version>
 	</plugin>
 	<handler name="isp4private.php" type="xml" minlevel="7">
 		<func>i4p.core.list</func>

@@ -29,8 +29,8 @@ class PiminoffISP{
 	    }
 		$this->config = new INIStorage("/usr/local/ispmgr/etc/isp4private/".$module.".ini",true);
 		$this->config->def("Name",$module,"Plugin");                                                        # Название модуля
-		$this->config->def("Version","1.0","Plugin");                                                       # Версия модуля
-		$this->config->def("VersionCode","100","Plugin");                                                   # Версия (код), должна быть больше на сервере, чтобы появилось уведомление об доступном обновлении.
+		$this->config->def("Version","1.1","Plugin");                                                       # Версия модуля
+		$this->config->def("VersionCode","110","Plugin");                                                   # Версия (код), должна быть больше на сервере, чтобы появилось уведомление об доступном обновлении.
 		$this->config->def("Author","ISP4Private","Plugin");                                                # Автор
 		$this->config->def("Update","http://download.isp4private.ru/plugins/".$module.".ver","Plugin");     # Ссылка, где будет версия-код
 		$this->config->def("Configurate","true","Plugin");                                                  # Поддерживает настройку?
@@ -191,7 +191,7 @@ class LogsISP {
 }
 
 class EnvironmentISP extends PiminoffISP {
-	public $version = "1.0.1";
+	public $version = "1.1.0";
 	public $login = "root"; // REMOTE_USER
 	public $authid = 0; // AUTHID
 	public $licid = 0; // LICID
