@@ -452,6 +452,12 @@ class ErrorISP{
 		print($xml->asXML());
         exit();
 	}
+
+	public function FormError($func="i4p.core.error",$text="Message",$elid=false){
+	    $this->logs->WriteLog(1,"[ERROR:FE] [".$func."] ".($elid?'['.$elid.']':null)." Form Error: ".$text);
+	    echo '<?xml version="1.0" encoding="UTF-8"?><doc user="root" level="7"><metadata name="'.$func.'" type="form"><form nosubmit="yes"><field name="cr_err"><textdata type="data" name="msg"/></field></form></metadata>'.($elid?'<elid>'.$elid.'</elid>':null).'<msg>'.$text.'</msg></doc>';
+	    die();
+	}
 }
 
 ?>
