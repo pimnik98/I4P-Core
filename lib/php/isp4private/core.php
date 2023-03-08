@@ -288,10 +288,8 @@ class XMLData {
 				            }
 				        } else {
 				            if ($this->mode == "table"){
-				                //echo "detect on\n";
     				            $back = $this->addNode($parent,$k);
     				            $ss = current($v);
-    				            //var_dump($k,$ss);
     				            foreach ($ss as $sk => $sv){
     				                $vb = $this->addNode($back,key($v));
     				                foreach ($sv["@attributes"] as $akk => $avv){
@@ -299,7 +297,6 @@ class XMLData {
                 					}
                 					unset($sv["@attributes"]);
                 					foreach($sv as $akk => $avv){
-                					    //$vttre = $this->addNode($vb,$akk);
                 					    if (is_array($avv)){
                 					        $gas = current($avv);
                 					        if (isset($gas["@attributes"])){
@@ -318,10 +315,8 @@ class XMLData {
                 					}
     				            }
 				            } else {
-				                //echo "detect on\n";
     				            $back = $this->addNode($parent,$k);
     				            $ss = current($v);
-    				            //var_dump($k,$ss);
     				            foreach ($ss as $sk => $sv){
     				                $vb = $this->addNode($back,key($v));
     				                foreach ($sv["@attributes"] as $akk => $avv){
