@@ -80,6 +80,7 @@ class PiminoffISP{
 					$this->params[$rp_k] = $rp_v;
 				}
 				foreach($doc->metadata as $rp_k => $rp_v){
+				    $this->logs->WriteLog(3,'[XML] [MetaData] '.json_encode(array($rp_k,$rp_v)));
 					$this->metadata[$rp_k] = $rp_v;
 				}
 				$this->logs->WriteLog(3,'[XML] [ISP] The parameters were processed');
@@ -111,12 +112,13 @@ class PiminoffISP{
 	    $conf->def("Author","ISP4Private.Ru","Library");            // Автор плагина
 	    $conf->def("Dependencies","","Library");                    // Через запятую, необходимые библиотеки
 	    $conf->save(1);
-
-	    foreach(explode(",",$conf->get("Dependencies","Plugin")) as $dep){
-	        if (!$this->checkLib($dep)){
-	            $this->err->InternalError("The \"".$dep."\" library is not available. You may need to install it, if you have problems, contact the library developer.");
-	        }
-	    }
+        if ($conf->get("Dependencies","Library") != ""){
+    	    foreach(explode(",",$conf->get("Dependencies","Plugin")) as $dep){
+    	        if (!$this->checkLib($dep)){
+    	            $this->err->InternalError("The \"".$dep."\" library is not available. You may need to install it, if you have problems, contact the library developer.");
+    	        }
+    	    }
+        }
 	    $this->logs->WriteLog(3,'[checkLib] The "'.$name.'" plugin is available for connection.');
 	    return true;
 	}

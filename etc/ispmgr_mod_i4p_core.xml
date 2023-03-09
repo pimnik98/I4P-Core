@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mgrdata>
-    <plugin name="i4p_core" version="1.1.0">
-		<descr lang="en">ISP4Private - Modification Control Center
-Plugin page: http://isp4private.ru/plugins/core/</descr>
-		<descr lang="ru">ISP4Private - Центр управления модификациями
-Страница плагина: http://isp4private.ru/plugins/core/</descr>
-		<description lang="en">ISP4Private - Modification Control Center
-Plugin page: http://isp4private.ru/plugins/core/</description>
-		<description lang="ru">ISP4Private - Центр управления модификациями</description>
-		<author name="ISP4Private.Ru" contacts="isp4private@gmail.com">ISP4Private.Ru
-Страница плагина: http://isp4private.ru/plugins/core/</author>
+    <plugin name="i4p_core" version="1.2.0">
+		<description lang="en">ISP4Private - Modification Control Center | Plugin page: http://isp4private.ru/plugins/core/</description>
+		<description lang="ru">ISP4Private - Центр управления модификациями | Plugin page: http://isp4private.ru/plugins/core/</description>
+		<author name="ISP4Private.Ru" contacts="isp4private@gmail.com">ISP4Private.Ru</author>
 		<contact>isp4private@gmail.com</contact>
 		<url>http://isp4private.ru/download/plugins/i4p_core.tar.gz</url>
 		<manager>ispmgr</manager>
@@ -18,7 +12,7 @@ Plugin page: http://isp4private.ru/plugins/core/</description>
 		<site>http://isp4private.ru/plugins/core/</site>
 		<name lang="en">ISP4Private - Modification Control Center</name>
 		<name lang="ru">ISP4Private - Центр управления модификациями</name>
-		<version>1.1.0</version>
+		<version>1.2.0</version>
 	</plugin>
 	<handler name="isp4private.php" type="xml" minlevel="7">
 		<func>i4p.core.list</func>
@@ -286,7 +280,8 @@ Plugin page: http://isp4private.ru/plugins/core/</description>
 			<msg name="hint_open">Открыть категорию</msg>
 			<msg name="short_back">Назад</msg>
 			<msg name="hint_back">Вернуться назад</msg>
-		</messages><messages name="i4p.plugins.config">
+		</messages>
+		<messages name="i4p.plugins.config">
 		    <msg name="title">Конфигурация плагина</msg>
 		    <msg name="cat">Категория</msg>
 		    <msg name="msg">Информация</msg>
